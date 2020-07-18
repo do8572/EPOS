@@ -1,0 +1,45 @@
+<?php
+include(__DIR__ . '/../model/artikli.php');
+include(__DIR__ . '/../model/uporabniki.php');
+
+#header('Content-Type: application/json');
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	print_r($_POST);	
+	
+	if(isset($_POST['registracija'])){
+			$racun = new uporabniskiRacun();
+			$res = $racun->registrirajSebe($_POST['ime'],
+			$_POST['priimek'], $_POST['email'], $_POST['naslov'], $_POST['telefon'], $_POST['geslo']);
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_POST['prijava'])) {
+			$racun = new uporabniskiRacun();
+			$res = $racun->prijavi($_POST['email'], $_POST['geslo']);
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_POST['prijavaX509'])){
+			$racun = new uporabniskiRacun();
+			$res = $racun->prijaviX509($_POST['geslo']);
+			echo json_encode($res);
+			exit;	
+	}
+}elseif($_SERVER['REQUEST_METHOD'] == 'GET') {
+	print_r($_GET);
+	
+	if(isset($_GET['odjava'])){
+			$racun = new uporabniskiRacun();
+			$res = $racun->odjavi();
+			echo json_encode($res);
+			exit;		
+	}	
+	
+	/*
+	switch(htmlspecialchars($_GET['action'])){
+		case 'izpisiArtikle':
+			$seznam = new SeznamArtiklov();
+			echo json_encode(array($seznam->izpis()));
+			exit;
+	}
+	*/
+}
