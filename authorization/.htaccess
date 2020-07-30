@@ -2,6 +2,6 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule "(.*)" "https://%{HTTP_HOST}%{REQUEST_URI}"
 
-SSLVerifyClient optional
+SSLVerifyClient require
 SSLVerifyDepth 1
 SSLOptions +ExportCertData

@@ -4,23 +4,43 @@
 </header>
 
 Izpise vse podatke o narocilu v DB. <br>
-<input type="submit" class="button" name="opisArtikla" value="opisNarocila" />
+<form id="registration-form" class="toggle-form" method="get" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
+<input type="submit" class="button" name="opisNarocila" value="opisNarocila" />
+</form>
 <hr>
 Izpise seznam narocil v DB. <br>
 
-<input type="submit" class="button" name="izpisArtiklov" value="izpisiNarocila" />
+<form id="registration-form" class="toggle-form" method="get" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">Stanje:</label><br>
+<input type="text" class="form-field" name="stanje" value="" /><br>
+<input type="submit" class="button" name="seznamNarocil" value="izpisiNarocila" />
+</form>
 <hr>
 Potrdi narocilo. <br>
 
-<input type="submit" class="button" name="izpisArtiklov" value="izpisiNarocila" />
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
+<input type="submit" class="button" name="potrdiNarocilo" value="potrdiNarocilo" />
+</form>
 <hr>
 Preklici narocilo. <br>
 
-<input type="submit" class="button" name="izpisArtiklov" value="izpisiNarocila" />
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
+<input type="submit" class="button" name="prekliciNarocilo" value="prekliciNarocilo" />
+</form>
 <hr>
 Storniraj narocilo. <br>
 
-<input type="submit" class="button" name="izpisArtiklov" value="izpisiNarocila" />
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
+<input type="submit" class="button" name="stornirajNarocilo" value="storniraj" />
+</form>
 <hr>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

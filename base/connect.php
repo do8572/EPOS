@@ -11,13 +11,13 @@ class ConnectDB{
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ];
-    
+
     public function __construct($dbname){
-        $this->dbname = $dbname;        
+        $this->dbname = $dbname;
         $this->dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';charset=' . $this->charset; #Setup DSN
     }
-    
-    private function connect(){        
+
+    private function connect(){
         if($this->connection == NULL){
             try{
                 $this->connection = new PDO($this->dsn, $this->user, $this->password, $this->options);
@@ -25,14 +25,14 @@ class ConnectDB{
                 error_log($e->getMessage());
             }
         }
-        
+
         return $this->connection;
     }
-    
+
     public function retrieve($command, $variables){
         $this->connect();
         $data = NULL;
-        
+
         try{
             $statement = $this->connection->prepare($command);
             $statement->execute($variables);
@@ -40,14 +40,14 @@ class ConnectDB{
         } catch(Exception $e){
             error_log($e->getMessage());
         }
-        
+
         return $data;
     }
-    
+
     public function change($command, $variables){
         $this->connect();
         $success = FALSE;
-        
+
         try{
             $statement = $this->connection->prepare($command);
             $success = $statement->execute($variables);
@@ -55,7 +55,26 @@ class ConnectDB{
         		echo $e->getMessage();
             error_log($e->getMessage());
         }
-        
+
         return $success;
+    }
+
+    public function changeWithId($command, $variables){
+        $this->connect();
+        $success = FALSE;
+
+        try{
+            $statement = $this->connection->prepare($command);
+            $success = $statement->execute($variables);
+        } catch(Exception $e){
+        		echo $e->getMessage();
+            error_log($e->getMessage());
+        }
+
+        if($success){
+          return $this->connection->lastInsertId();
+        }
+        
+        return null;
     }
 }

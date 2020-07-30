@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php
-			print_r(getenv());        
+			var_dump($_SERVER);          
         
         # Avtorizirani uporabniki (to navadno pride iz podatkovne baze)
         $authorized_users = ["David"];

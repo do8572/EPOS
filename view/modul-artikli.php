@@ -7,71 +7,67 @@
 <br><br>
 
 Izpise vse podatke artikla v DB. <br>
+<form id="registration-form" class="toggle-form" method="get" action="../controller/requestHandler.php">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 <input type="submit" class="button" name="opisArtikla" value="opisArtikla" />
+</form>
 <hr>
 Izpise seznam artiklov v DB. <br>
 
+<form id="registration-form" class="toggle-form" method="get" action="../controller/requestHandler.php">
 <input type="submit" class="button" name="izpisArtiklov" value="izpisiArtikle" />
+</form>
 <hr>
 Ustvari artikel.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
 <label class="form-label" for="ime">Ime:</label><br>
 <input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="ime">Opis:</label><br>
+<input type="text" class="form-field" name="opis" value="" /><br>
+<label class="form-label" for="ime">Cena:</label><br>
+<input type="text" class="form-field" name="cena" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="ustvariArtikel" value="ustvariArtikel" />
 </form>
 </div>
 <div>
 <hr>
 Posodobi podatke artikla.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 <label class="form-label" for="ime">Ime:</label><br>
 <input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="ime">Opis:</label><br>
+<input type="text" class="form-field" name="opis" value="" /><br>
+<label class="form-label" for="ime">Cena:</label><br>
+<input type="text" class="form-field" name="cena" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="posodobiArtikel" value="posodobiArtikel" />
 </form>
 Aktiviraj artikel ID.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="ime">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="aktivirajArtikel" value="aktivirajArtikel" />
 </form>
 <hr>
 Deaktiviraj artikel ID.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="ime">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="deaktivirajArtikel" value="deaktivirajArtikel" />
 </form>
 </div>
 

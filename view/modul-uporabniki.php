@@ -7,7 +7,15 @@
 
 <div>
 <h3>Modul Uporabniski racun</h3>
+<?php
+session_start();
+print_r($_SESSION);
+?>
 <br><br>
+
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
+<input type="submit" class="post-button" name="ustvariAdministratorja" value="ustvari administratorja" />
+</form>
 
 Registrira uporabnika kot stranko<br>
 <form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
@@ -53,116 +61,71 @@ Prijavi uporabnika z geslom in X.509 certifikatom.<br>
 
 <hr>
 Odjavi katerega koli uporabnika.<br>
-<form>
-<input type="submit" class="post-button" name="odjava" value="odjavi" method="get" action="../controller/requestHandler.php"/>
+<form method="get" action="../controller/requestHandler.php">
+<input type="submit" class="post-button" name="odjava" value="odjavi" />
 </form>
 </div>
 <div>
 <hr>
-Ustvari uporabniski racun za stranki.<br>
-<form id="registration-form" class="toggle-form">
+Posodobi uporabniski racun.<br>
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
+<label class="form-label" for="ime">TargetID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 <label class="form-label" for="ime">Ime:</label><br>
 <input type="text" class="form-field" name="ime" value="" /><br>
 <label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="priimek" value="" /><br>
 <label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="email" value="" /><br>
 <label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="naslov" value="" /><br>
 <label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="telefon" value="" /><br>
 <label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="geslo" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
-</form>
-</div>
-<div>
-<hr>
-Posodobi uporabniski racun za stranki.<br>
-<form id="registration-form" class="toggle-form">
-<span class="form-input-holder">
-<label class="form-label" for="ime">Ime:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-</span>
-
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="posodobi" value="posodobi" />
 </form>
 </div>
 <div>
 <hr>
 Ustvari uporabniski racun za prodajalca.<br>
-<form id="registration-form" class="toggle-form">
+<form id="p-creation-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
 <label class="form-label" for="ime">Ime:</label><br>
 <input type="text" class="form-field" name="ime" value="" /><br>
 <label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="priimek" value="" /><br>
 <label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="email" value="" /><br>
 <label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<input type="text" class="form-field" name="geslo" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="registracijaProdajalca" value="registrirajProdajalca" />
 </form>
 </div>
 <div>
-<hr>
-Posodobi uporabniski racun za prodajalca.<br>
-<form id="registration-form" class="toggle-form">
-<span class="form-input-holder">
-<label class="form-label" for="ime">Ime:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Priimek:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Elektronski naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Naslov:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Telefonska stevilka:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
-</span>
-
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
-</form>
-<hr>
 Aktiviraj uporabniski racun ID.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="aktiviraj" value="aktiviraj" />
 </form>
 <hr>
 Deaktiviraj uporabniski racun ID.<br>
-<form id="registration-form" class="toggle-form">
+<form id="registration-form" class="toggle-form" method="post" action="../controller/requestHandler.php">
 <span class="form-input-holder">
-<label class="form-label" for="ime">Geslo:</label><br>
-<input type="text" class="form-field" name="ime" value="" /><br>
+<label class="form-label" for="target_id">ID:</label><br>
+<input type="text" class="form-field" name="target_id" value="" /><br>
 </span>
 
-<input type="submit" class="post-button" name="odjava" value="ustvariUporabniskiRacunStranka" />
+<input type="submit" class="post-button" name="deaktiviraj" value="deaktiviraj" />
 </form>
 </div>
 

@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !/epos/view/trgovina.php
+RewriteCond %{REQUEST_URI} !/epos/view/article.php  
+RewriteCond %{REQUEST_URI} !/epos/controller/requestHandler.php 
+RewriteRule "(.*)" "https://%{HTTP_HOST}%{REQUEST_URI}"
+
+SSLVerifyClient optional
+SSLVerifyDepth 1
+SSLOptions +ExportCertData
