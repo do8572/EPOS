@@ -4,7 +4,10 @@
 </header>
 
 <h3>Modul kosarica</h3>
+
+<?php session_start(); echo print_r($_SESSION['kosarica']); ?>
 <br><br>
+
 
 Doda artikel v kosarico. <br>
 <form id="registration-form" class="toggle-form" method="get" action="../controller/requestHandler.php">

@@ -14,15 +14,15 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 $(document).ready(function(){
-  var idProfil = getUrlParameter('idProfil');
+  var idArtikel = getUrlParameter('idArtikel');
 
   $.ajax({
     type: 'GET',
     url: '/epos/controller/requestHandler.php',
     contentType: 'application/json',
     data: {
-      'opisUporabnika': true,
-      'target_id': idProfil
+      'opisArtikla': true,
+      'target_id': idArtikel
     },
     success: function(res){   //console.log(res);
       if(res == null){
@@ -34,43 +34,26 @@ $(document).ready(function(){
         );
       }else{
         $("input#ime").val(res[0]['ime']);
-        $("input#priimek").val(res[0]['priimek']);
-        $("input#email").val(res[0]['elektronski naslov']);
-        $("input#vloga").val(res[0]['vloga']);
-
-        if(res[0]['vloga'] == "stranka"){
-          $("input#telefon").val(res[0]['telefonska stevilka']);
-          $("input#naslov").val(res[0]['naslov']);
-        }else{
-          $("input#telefon").remove();
-          $("input#naslov").remove();
-          $(".TBR").remove();
-        }
+        $("input#opis").val(res[0]['opis']);
+        $("input#cena").val(res[0]['cena']);
 
         $("#profil").submit(function(e){
           e.preventDefault();
           $("input").prop('disabled', false);
-          $("input#vloga").prop('disabled', true);
-          $("input#email").prop('disabled', true);
           $("#profil").attr('id', 'posodobiProfil');
 
           $("#posodobiProfil").submit(function(e){
             e.preventDefault();
-            console.log('stranka');
 
-            if(res[0]['vloga'] == "stranka"){
               $.ajax({
                 type: 'POST',
                 url: '/epos/controller/requestHandler.php',
                 data: {
-                  'posodobi': true,
-                  'target_id': idProfil,
+                  'posodobiArtikel': true,
+                  'target_id': idArtikel,
                   'ime': $("input#ime").val(),
-                  'priimek': $("input#priimek").val(),
-                  'geslo': $("input#geslo").val(),
-                  'email': $("input#email").val(),
-                  'telefon': $("input#telefon").val(),
-                  'naslov': $("input#naslov").val()
+                  'opis': $("input#opis").val(),
+                  'cena': $("input#cena").val(),
                 },
                 success: function(res){
                   if(res == 0){
@@ -83,32 +66,6 @@ $(document).ready(function(){
                   alert(thrownError);
                 }
               });
-            }else{
-              $.ajax({
-                type: 'POST',
-                url: '/epos/controller/requestHandler.php',
-                data: {
-                  'posodobi': true,
-                  'target_id': idProfil,
-                  'ime': $("input#ime").val(),
-                  'priimek': $("input#priimek").val(),
-                  'geslo': $("input#geslo").val(),
-                  'email': $("input#email").val(),
-                  'telefon': null,
-                  'naslov': null
-                },
-                success: function(res){
-                  if(res == 0){
-                    location.reload();
-                    $("input").prop('disabled', true);
-                  }
-                },
-                error: function(xhr, ajaxOptions, thrownError){
-                  console.log(xhr.responseText);
-                  console.log(thrownError);
-                }
-              });
-            }
           });
         });
       }

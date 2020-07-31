@@ -44,13 +44,27 @@ class Uporabnik{
 		return TRUE;
 	}
 
-	public function opis(){
+	public function opis($target_id){
 		if(!$this->jePrijavljen()){
 			return null;
 		}
 
+		if($target_id == null){
+			$target_id = $_SESSION['session_id'];
+		}
+
 		$data = $this->Database->retrieve("SELECT * FROM epos.Uporabniki WHERE idUporabnik = ?",
-		 [$_SESSION['session_id']]);
+		 [$target_id]);
+
+		 if($target_id != $_SESSION['session_id']){
+			 $tar_role = $data[0]['vloga'];
+
+			 if(($tar_role == 'stranka' && $_SESSION['role'] != 'prodajalec') ||
+ 				($tar_role == 'prodajalec' && $_SESSION['role'] != 'administrator') ||
+				$tar_role == 'administrator'){
+ 					return -5;
+ 				}
+		 }
 
 		return $data;
 	}
@@ -129,7 +143,7 @@ class Uporabnik{
 			return -2;
 		}
 
-		$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ?", [$email]);
+		$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ? AND stanje = 'aktiviran'", [$email]);
 
 		if($rowInUporabniki == null){
 			return -3;
@@ -239,5 +253,22 @@ class Uporabnik{
 		}
 
 		return -3;
+	}
+
+	public function seznam(){
+		if(!$this->jePrijavljen() || $this->jeStranka()){
+			return -1;
+		}
+
+		$tip = null;
+
+		if($this->jeProdajalec()){
+			$tip = 'stranka';
+		}else{
+			$tip = 'prodajalec';
+		}
+
+		return $this->Database->retrieve("SELECT * FROM epos.Uporabniki WHERE vloga = ?",
+		 [$tip]);
 	}
 }

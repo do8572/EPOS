@@ -24,34 +24,13 @@
                 </div>
 
                 <div class="form-label-group">
-                  <label for="firstName">Priimek</label>
-                  <input type="lastName" id="priimek" class="form-control" placeholder="" required autofocus disabled>
+                  <label for="firstName">Opis</label>
+                  <input type="lastName" id="opis" class="form-control" placeholder="" required autofocus disabled>
                 </div>
 
                 <div class="form-label-group">
-                  <label for="firstName">Vloga</label>
-                  <input type="lastName" id="vloga" class="form-control" placeholder="" required autofocus disabled>
-                </div>
-
-
-                <div class="form-label-group">
-                  <label class="TBR" for="naslov">Naslov</label>
-                  <input type="firstName" id="naslov" class="form-control" placeholder="" required autofocus disabled>
-                </div>
-
-                <div class="form-label-group">
-                  <label class="TBR" for="telefon">Telefonska stevilka</label>
-                  <input type="lastName" id="telefon" class="form-control" placeholder="" required autofocus disabled>
-                </div>
-
-                <div class="form-label-group">
-                  <label for="inputEmail">Email address</label>
-                  <input type="email" id="email" class="form-control" placeholder="" required autofocus disabled>
-                </div>
-
-                <div class="form-label-group">
-                  <label for="inputPassword">Password</label>
-                  <input type="password" id="geslo" class="form-control" placeholder="" required disabled>
+                  <label for="firstName">Cena</label>
+                  <input type="lastName" id="cena" class="form-control" placeholder="" required autofocus disabled>
                 </div>
                 </br></br></br>
 
@@ -68,7 +47,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="scripts/profil.js"></script>
+<script src="scripts/artikelProfil.js"></script>
 <script src="scripts/navbar.js"></script>
 
 </body>

@@ -45,12 +45,13 @@ class Kosarica{
 
     $idProdajalec = $data[0]['idProdajalec'];
 
-    if(isset($_SESSION['kosarica'][$idProdajalec]) &&
+    if(isset($_SESSION['kosarica']) &&
      isset($_SESSION['kosarica'][$idProdajalec][$idArtikel])){
-      $_SESSION['kosarica'][$idProdajalec][$idArtikel] += $kolicina;
+      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] += $kolicina;
       return 1;
     }else{
-      $_SESSION['kosarica'][$idProdajalec][$idArtikel] = $kolicina;
+      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['data'] = $data[0];
+      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] = $kolicina;
       return 2;
     }
   }
@@ -69,9 +70,9 @@ class Kosarica{
       return -1;
     }
 
-    $_SESSION['kosarica'][$idProdajalec][$idArtikel] -= $kolicina;
+    $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] -= $kolicina;
 
-    if($_SESSION['kosarica'][$idProdajalec][$idArtikel] <= 0){
+    if($_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] <= 0){
       unset($_SESSION['kosarica'][$idProdajalec][$idArtikel]);
       if(count($_SESSION['kosarica'][$idProdajalec]) != 0){
         return 2;
@@ -93,9 +94,9 @@ class Kosarica{
         $artikel = $this->artikel->opis($idArtikel)[0];
 
         $this->Database->change("INSERT INTO epos.Narocila_has_Artikli (idNarocilo, idArtikel, cena, kolicina) VALUES (?,?,?,?)",
-      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idProdajalec][$idArtikel]]);
+      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina']]);
 
-        $this->odstrani($idArtikel, $_SESSION['kosarica'][$idProdajalec][$idArtikel]);
+        $this->odstrani($idArtikel, $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina']);
       }
     }
 

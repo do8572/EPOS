@@ -98,10 +98,11 @@ class Artikel{
 }
 
 class SeznamArtiklov{
-	private $Database;
+	private $Database, $uporabnik;
 
 	public function __construct(){
 		$this->Database = new connectDB('epos');
+		$this->uporabnik = new Uporabnik();
 
 		if(session_status() == PHP_SESSION_NONE){
 			session_start();
@@ -109,6 +110,10 @@ class SeznamArtiklov{
 	}
 
 	public function izpis(){
+		return $this->Database->retrieve("SELECT * FROM Artikli WHERE stanje = 'aktiviran'", []);
+	}
+
+	public function izpisVse(){
 		return $this->Database->retrieve("SELECT * FROM Artikli", []);
 	}
 }

@@ -73,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}elseif(isset($_POST['zakljuciNakup'])){
 		$kosarica = new Kosarica();
 		$res = $kosarica->zakljuci();
-		print_r($_SESSION);
+		#print_r($_SESSION);
 		echo json_encode($res);
 		exit;
 	}elseif(isset($_POST['potrdiNarocilo'])){
@@ -110,35 +110,46 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$res = $seznam->izpis();
 		echo json_encode($res);
 		exit;
+	}elseif(isset($_GET['izpisVsihArtiklov'])){
+		$seznam = new SeznamArtiklov();
+		$res = $seznam->izpisVse();
+		echo json_encode($res);
+		exit;
 	}elseif(isset($_GET['dodajArtikel'])){
 		$seznam = new Kosarica();
 		$res = $seznam->dodaj($_GET['target_id'], $_GET['kolicina']);
-		print_r($_SESSION);
+		#print_r($_SESSION);
 		echo json_encode($res);
 		exit;
 	}elseif(isset($_GET['odstraniArtikel'])){
 		$seznam = new Kosarica();
 		$res = $seznam->odstrani($_GET['target_id'], $_GET['kolicina']);
-		print_r($_SESSION);
+		#print_r($_SESSION);
+		echo json_encode($res);
 		exit;
 	}elseif(isset($_GET['opisNarocila'])){
 		$narocila = new Narocila();
 		$res = $narocila->opis($_GET['target_id']);
-		print_r($res);
+		echo json_encode($res);
 		exit;
 	}elseif(isset($_GET['seznamNarocil'])){
 		$narocila = new Narocila();
-		$res = $narocila->opis($_GET['stanje']);
-		print_r($res);
+		$res = $narocila->seznam($_GET['stanje']);
+		echo json_encode($res);
 		exit;
 	}elseif(isset($_GET['opisUporabnika'])){
 			$racun = new Uporabnik();
-			$res = $racun->opis();
+			$res = $racun->opis($_GET['target_id']);
 			echo json_encode($res);
 			exit;
 	}elseif(isset($_GET['izpisKosarica'])){
 			$kosarica = new Kosarica();
 			$res = $kosarica->opis();
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_GET['seznamUporabnikov'])){
+			$racun = new Uporabnik();
+			$res = $racun->seznam();
 			echo json_encode($res);
 			exit;
 	}

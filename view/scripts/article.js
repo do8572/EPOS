@@ -13,6 +13,22 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+var dodajArtikel = function(id){
+  $.ajax({
+    type: 'GET',
+    url: '/epos/controller/requestHandler.php',
+    contentType: 'application/json',
+    data: {
+      'dodajArtikel': true,
+      'target_id': id,
+      'kolicina': 1
+    },
+    success: function(res){
+      window.location.replace("kosarica.php");
+    }
+  });
+}
+
 $(document).ready(function(){
   var idArtikel = getUrlParameter('idArtikel');
 
@@ -24,16 +40,17 @@ $(document).ready(function(){
       'opisArtikla': true,
       'target_id': idArtikel
     },
-    success: function(res){
+    success: function(res){   //console.log(res);
       $.ajax({
         type: 'GET',
         url: '/epos/controller/requestHandler.php',
         contentType: 'application/json',
         data: {
-          'opisUporabnika': true
+          'opisUporabnika': true,
+          'target_id': null
         },
-        success: function(res2){
-          if(res2 == null){
+        success: function(res2){  //console.log(res2);
+          if(res2 == null || res2[0]['vloga'] != 'stranka'){
             $('#articleMain').append(
               '<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">'+
               '<div class="card-body">'+
@@ -51,11 +68,15 @@ $(document).ready(function(){
                 '<p class="card-text">'+ res[0]['opis'] +'</p>'+
                 '<div class="row justify-content-end">' +
                   '<div class="col-md-3">' +
-                '<button type="button" class="btn btn-primary">DodajArtikel</button>' +
+                '<button type="button" class="btn btn-primary" onclick="dodajArtikel(' + idArtikel + ')">DodajArtikel</button>' +
                 '</div></div>' +
               '</div>'
             );
           }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          console.log(xhr.responseText);
+          console.log(thrownError);
         }
       });
     }

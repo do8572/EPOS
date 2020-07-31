@@ -16,12 +16,12 @@ class Narocila{
 	}
 
   public function seznam($stanje){
-    if($this->uporabnik->jeStranka){
+    if($this->uporabnik->jeStranka()){
       return $this->Database->retrieve("SELECT * FROM epos.Narocila WHERE idStranka = ? AND stanje = ?",
       [$_SESSION['session_id'], $stanje]);
     }
 
-    if($this->uporabnik->jeProdajalec){
+    if($this->uporabnik->jeProdajalec()){
       return $this->Database->retrieve("SELECT * FROM epos.Narocila WHERE idProdajalec = ? AND stanje = ?",
       [$_SESSION['session_id'], $stanje]);
     }

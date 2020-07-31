@@ -7,13 +7,11 @@ $(document).ready(function(){
       type: 'POST',
       url: '/epos/controller/requestHandler.php',
       data: {
-        'registracija': true,
+        'registracijaProdajalca': true,
         'email': $("#inputEmail").val(),
         'geslo': $("#inputPassword").val(),
         'ime': $("#ime").val(),
-        'priimek': $("#priimek").val(),
-        'telefon': $("#telefon").val(),
-        'naslov': $("#naslov").val()
+        'priimek': $("#priimek").val()
       },
       success: function(res){
         if(res == 0){
@@ -36,7 +34,7 @@ $(document).ready(function(){
             }
           });
 
-          window.location.replace("trgovina.php");
+          window.location.replace("seznamUporabnikov.php");
         }
       }
     });
