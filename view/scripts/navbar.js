@@ -19,7 +19,7 @@ $(document).ready(function(){
         $('#navbarNavAltMarkup').append(
           '<div class="navbar-nav">' +
           '  <a class="nav-item nav-link" href="profil.php?idProfil='+ res[0]['idUporabnik'] +'">Profil</a>' +
-          '  <a class="nav-item nav-link" href="narocila.php">Narocila</a>' +
+          '  <a class="nav-item nav-link" href="narocila.php?jeProdajalec=true">Narocila</a>' +
           '  <a class="nav-item nav-link" href="seznamUporabnikov.php">Stranke</a>' +
           '  <a class="nav-item nav-link" href="seznamArtiklov.php">Artikli</a>' +
           '</div>' +

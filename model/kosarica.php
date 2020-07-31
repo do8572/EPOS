@@ -43,41 +43,25 @@ class Kosarica{
       return $data;
     }
 
-    $idProdajalec = $data[0]['idProdajalec'];
-
-    if(isset($_SESSION['kosarica']) &&
-     isset($_SESSION['kosarica'][$idProdajalec][$idArtikel])){
-      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] += $kolicina;
+    if(isset($_SESSION['kosarica']) && isset($_SESSION['kosarica'][$idArtikel])){
+      $_SESSION['kosarica'][$idArtikel]['kolicina'] += $kolicina;
       return 1;
     }else{
-      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['data'] = $data[0];
-      $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] = $kolicina;
+      $_SESSION['kosarica'][$idArtikel]['data'] = $data[0];
+      $_SESSION['kosarica'][$idArtikel]['kolicina'] = $kolicina;
       return 2;
     }
   }
 
   public function odstrani($idArtikel, $kolicina){
-    $idProdajalec = null;
+    $_SESSION['kosarica'][$idArtikel]['kolicina'] -= $kolicina;
 
-    foreach(array_keys($_SESSION['kosarica']) as $Prodajalec){
-      if(isset($_SESSION['kosarica'][$Prodajalec][$idArtikel])){
-        $idProdajalec = $Prodajalec;
-        break;
-      }
-    }
-
-    if($idProdajalec == null){
-      return -1;
-    }
-
-    $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] -= $kolicina;
-
-    if($_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina'] <= 0){
-      unset($_SESSION['kosarica'][$idProdajalec][$idArtikel]);
-      if(count($_SESSION['kosarica'][$idProdajalec]) != 0){
+    if($_SESSION['kosarica'][$idArtikel]['kolicina'] <= 0){
+      unset($_SESSION['kosarica'][$idArtikel]);
+      if(count($_SESSION['kosarica']) > 0){
         return 2;
       }else{
-        unset($_SESSION['kosarica'][$idProdajalec]);
+        unset($_SESSION['kosarica']);
         return 3;
       }
     }
@@ -86,19 +70,17 @@ class Kosarica{
   }
 
   public function zakljuci(){
-    foreach(array_keys($_SESSION['kosarica']) as $idProdajalec){
-      $idNarocila = $this->Database->changeWithId("INSERT INTO epos.Narocila (idProdajalec, idStranka, datum_narocila, stanje)
-      VALUES (?,?,?, 'neobdelano')", [$idProdajalec, $_SESSION['session_id'], date('Y-m-d')]);
+    $idNarocila = $this->Database->changeWithId("INSERT INTO epos.Narocila (idStranka, datum_narocila, stanje)
+    VALUES (?,?, 'neobdelano')", [$_SESSION['session_id'], date('Y-m-d')]);
 
-      foreach(array_keys($_SESSION['kosarica'][$idProdajalec]) as $idArtikel){
-        $artikel = $this->artikel->opis($idArtikel)[0];
+    foreach(array_keys($_SESSION['kosarica']) as $idArtikel){
+      $artikel = $_SESSION['kosarica'][$idArtikel]['data'];
 
-        $this->Database->change("INSERT INTO epos.Narocila_has_Artikli (idNarocilo, idArtikel, cena, kolicina) VALUES (?,?,?,?)",
-      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina']]);
+      $this->Database->change("INSERT INTO epos.Narocila_has_Artikli (idNarocilo, idArtikel, cena, kolicina) VALUES (?,?,?,?)",
+      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idArtikel]['kolicina']]);
 
-        $this->odstrani($idArtikel, $_SESSION['kosarica'][$idProdajalec][$idArtikel]['kolicina']);
+        $this->odstrani($idArtikel, $_SESSION['kosarica'][$idArtikel]['kolicina']);
       }
-    }
 
     return 0;
   }

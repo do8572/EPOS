@@ -79,17 +79,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}elseif(isset($_POST['potrdiNarocilo'])){
 		$narocila = new Narocila();
 		$res = $narocila->potrdi($_POST['target_id']);
-		print_r($res);
+		#print_r($res);
+		echo json_encode($res);
 		exit;
 	}elseif(isset($_POST['prekliciNarocilo'])){
 		$narocila = new Narocila();
 		$res = $narocila->preklici($_POST['target_id']);
-		print_r($res);
+		#print_r($res);
+		echo json_encode($res);
 		exit;
 	}elseif(isset($_POST['stornirajNarocilo'])){
 		$narocila = new Narocila();
 		$res = $narocila->storniraj($_POST['target_id']);
-		print_r($res);
+		#print_r($res);
+		echo json_encode($res);
 		exit;
 	}
 }elseif($_SERVER['REQUEST_METHOD'] == 'GET') {

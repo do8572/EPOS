@@ -17,13 +17,13 @@ class Narocila{
 
   public function seznam($stanje){
     if($this->uporabnik->jeStranka()){
-      return $this->Database->retrieve("SELECT * FROM epos.Narocila WHERE idStranka = ? AND stanje = ?",
-      [$_SESSION['session_id'], $stanje]);
+      return $this->Database->retrieve("SELECT * FROM epos.Narocila WHERE idStranka = ?",
+      [$_SESSION['session_id']]);
     }
 
     if($this->uporabnik->jeProdajalec()){
-      return $this->Database->retrieve("SELECT * FROM epos.Narocila WHERE idProdajalec = ? AND stanje = ?",
-      [$_SESSION['session_id'], $stanje]);
+      return $this->Database->retrieve("SELECT * FROM epos.Narocila",
+      []);
     }
 
     return -1;
@@ -37,8 +37,8 @@ class Narocila{
   public function potrdi($idNarocila){
     if($this->uporabnik->jeProdajalec()){
       return $this->Database->change("UPDATE epos.Narocila SET stanje = 'potrjeno' WHERE
-         stanje = 'neobdelano' AND idNarocilo = ? AND idProdajalec = ?",
-      [$idNarocila, $_SESSION['session_id']]);
+         stanje = 'neobdelano' AND idNarocilo = ?",
+      [$idNarocila]);
     }
 
     return -1;
@@ -47,8 +47,8 @@ class Narocila{
   public function preklici($idNarocila){
     if($this->uporabnik->jeProdajalec()){
       return $this->Database->change("UPDATE epos.Narocila SET stanje = 'preklicano' WHERE
-         stanje = 'neobdelano' AND idNarocilo = ? AND idProdajalec = ?",
-      [$idNarocila, $_SESSION['session_id']]);
+         stanje = 'neobdelano' AND idNarocilo = ?",
+      [$idNarocila]);
     }
 
     return -1;
@@ -57,8 +57,8 @@ class Narocila{
   public function storniraj($idNarocila){
     if($this->uporabnik->jeProdajalec()){
       return $this->Database->change("UPDATE epos.Narocila SET stanje = 'stornirano' WHERE
-         stanje = 'potrjeno' AND idNarocilo = ? AND idProdajalec = ?",
-      [$idNarocila, $_SESSION['session_id']]);
+         stanje = 'potrjeno' AND idNarocilo = ?",
+      [$idNarocila]);
     }
 
     return -1;

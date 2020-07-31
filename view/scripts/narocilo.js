@@ -25,6 +25,8 @@ $(document).ready(function(){
       'target_id': idNarocilo
     },
     success: function(res){
+      var total = 0;
+
       for(i=0; i < res.length; i++){
         $('#NarocilaMain').append(
           '<a href="narocilo.php?idNarocilo='+ res[i]['idArtikel'] +'" class="list-group-item list-group-item-action flex-column align-items-start">' +
@@ -35,7 +37,13 @@ $(document).ready(function(){
             '<p class="mb-1">x' + res[i]['kolicina'] +'</p>' +
           '</a>'
         );
+
+        total += res[i]['kolicina'] * res[i]['cena'];
       }
+      $('#NarocilaMain').append(
+        '<hr>' +
+        '<h5 class="mb-1 d-flex w-100 justify-content-end">Total: '+ total.toFixed(2) +'</h5>'
+      );
     },
     error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.status);

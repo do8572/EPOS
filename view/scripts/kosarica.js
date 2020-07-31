@@ -60,22 +60,20 @@ $(document).ready(function(){
     success: function(res){
       console.log(res);
 
-      for(var prodajalec in res){
-        for(var artikel in res[prodajalec]){
-          console.log(res[prodajalec][artikel]['data']['ime'])
+        for(var artikel in res){
+          console.log(res[artikel]['data']['ime'])
           $('#KosaricaMain').append(
             '<div class="list-group-item list-group-item-action flex-column align-items-start">' +
               '<div class="d-flex w-100 justify-content-between">' +
-                '<a href="article.php?idArtikel='+ artikel +' class="text-dark"><h5 class="mb-1">' + res[prodajalec][artikel]['data']['ime'] +'</h5></a>' +
-                '<small class="text-muted">' + res[prodajalec][artikel]['data']['cena'] + ' EUR </small>' +
+                '<a href="article.php?idArtikel='+ artikel +' class="text-dark"><h5 class="mb-1">' + res[artikel]['data']['ime'] +'</h5></a>' +
+                '<small class="text-muted">' + res[artikel]['data']['cena'] + ' EUR </small>' +
               '</div>' +
-              '<p class="mb-1">x' + res[prodajalec][artikel]['kolicina'] + '</p>' +
+              '<p class="mb-1">x' + res[artikel]['kolicina'] + '</p>' +
             '<button type="button" class="btn btn-secondary float-md-right" onclick="odstraniArtikel('+ artikel +')">Odstani</button>' +
             '<button type="button" class="btn btn-primary float-md-right" onclick="dodajArtikel('+ artikel +')">Dodaj</button>' +
             '</div>'
           );
         }
-      }
 
       if(res.length == 0){
         $('#KosaricaMain').append(

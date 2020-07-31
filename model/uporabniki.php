@@ -176,6 +176,10 @@ class Uporabnik{
 	}
 
 	public function odjavi(){
+		if(isset($_SESSION['kosarica'])){
+			unset($_SESSION['kosarica']);
+		}
+
 		if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE){
             $_SESSION['loggedin'] = FALSE;
             unset($_SESSION["session_id"]);
