@@ -97,13 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void showArticle(View view, String article_id) {
         Intent intent = new Intent(this, Artikel.class);
-        intent.putExtra(ARTICLE_ID, "1");
+        intent.putExtra(ARTICLE_ID, article_id);
         startActivity(intent);
     }
 
     private void showArticleList(){
         final ListView list = findViewById(R.id.list);
         final ArrayList<String> arrayList = new ArrayList<>();
+        final ArrayList<Integer> idList = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest  req = new JsonArrayRequest(Request.Method.GET, "http://192.168.0.54/epos/controller/requestHandler.php?izpisVsihArtiklov=true", null, new Response.Listener<JSONArray>() {
             @Override
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i < response.length(); i++){
                         JSONObject obj = (JSONObject) response.get(i);
                         arrayList.add(obj.getString("ime"));
+                        idList.add(obj.getInt("idArtikel"));
                     }
 
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, arrayList);
@@ -119,8 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String clickedItem = (String) list.getItemAtPosition(position);
-                            showArticle(view, clickedItem);
+                            showArticle(view, String.valueOf(idList.get(position)));
                         }
                     });
                 } catch (JSONException e) {

@@ -38,7 +38,7 @@ public class Artikel extends AppCompatActivity {
 
         TextView displayTextView = new TextView(Artikel.this);
         displayTextView.append("Artikel");
-        Toast.makeText(Artikel.this, message, Toast.LENGTH_LONG).show();
+        //Toast.makeText(Artikel.this, message, Toast.LENGTH_LONG).show();
         showArticle(Integer.parseInt(message));
     }
 
