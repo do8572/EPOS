@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MyApp","started");
 
         //showArticleList();
-   }
+    }
 
     @Override
     protected void onRestart() {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showArticle(View view, String article_id) {
         Intent intent = new Intent(this, Artikel.class);
-        intent.putExtra(ARTICLE_ID, article_id);
+        intent.putExtra(ARTICLE_ID, "1");
         startActivity(intent);
     }
 
