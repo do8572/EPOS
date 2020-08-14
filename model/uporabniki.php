@@ -99,6 +99,10 @@ class Uporabnik{
 			return -3;
 		}
 
+		$ime = htmlspecialchars($ime); $priimek = htmlspecialchars($priimek);
+		$email = htmlspecialchars($email); $naslov = htmlspecialchars($naslov);
+		$telefonska = htmlspecialchars($telefonska);
+
 		$hash = password_hash($geslo, PASSWORD_BCRYPT);
 
 		if(!$this->Database->change("INSERT INTO epos.Uporabniki (vloga, ime, priimek,
@@ -123,6 +127,9 @@ class Uporabnik{
 			return -3;
 		}
 
+		$ime = htmlspecialchars($ime); $priimek = htmlspecialchars($priimek);
+		$email = htmlspecialchars($email);
+
 		$hash = password_hash($geslo, PASSWORD_BCRYPT);
 
 		if($this->Database->change("INSERT INTO epos.Uporabniki (vloga, ime, priimek,
@@ -142,6 +149,8 @@ class Uporabnik{
 		if($this->jePrijavljen()){
 			return -2;
 		}
+
+		session_regenerate_id();
 
 		$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ? AND stanje = 'aktiviran'", [$email]);
 
@@ -220,6 +229,16 @@ class Uporabnik{
 				($tar_role == 'prodajalec' && $_SESSION['role'] != 'administrator')){
 					return -5;
 				}
+		}
+
+		$ime = htmlspecialchars($ime); $priimek = htmlspecialchars($priimek);
+		$email = htmlspecialchars($email);
+
+		if($naslov != null){
+			$naslov = htmlspecialchars($naslov);
+		}
+		if($telefon != null){
+			$telefon = htmlspecialchars($telefon);
 		}
 
 		$hash = password_hash($geslo, PASSWORD_BCRYPT);

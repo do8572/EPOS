@@ -37,6 +37,10 @@ class Kosarica{
   }
 
   public function dodaj($idArtikel, $kolicina){
+    if(!is_numeric($idArtikel) || !is_numeric($kolicina)){
+      return -4;
+    }
+
     $data = $this->artikel->opis($idArtikel);
 
     if($data == -1 || $data == -2){
@@ -54,6 +58,10 @@ class Kosarica{
   }
 
   public function odstrani($idArtikel, $kolicina){
+    if(!is_numeric($idArtikel) || !is_numeric($kolicina)){
+      return -4;
+    }
+
     $_SESSION['kosarica'][$idArtikel]['kolicina'] -= $kolicina;
 
     if($_SESSION['kosarica'][$idArtikel]['kolicina'] <= 0){

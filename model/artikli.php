@@ -20,6 +20,10 @@ class Artikel{
 			return -1;
 		}
 
+		$ime = htmlspecialchars($ime);
+		$opis = htmlspecialchars($opis);
+		$cena = htmlspecialchars($cena);
+
 		if($this->Database->change("INSERT INTO epos.Artikli (idProdajalec, ime, opis, cena, stanje)
 		VALUES (?,?,?,?,'aktiviran')",
 		[$_SESSION['session_id'], $ime, $opis, $cena])){
@@ -49,6 +53,10 @@ class Artikel{
 		if($rowInArtikli[0]['idProdajalec'] != $_SESSION['session_id']){
 			return -3;
 		}
+
+		$ime = htmlspecialchars($ime);
+		$opis = htmlspecialchars($opis);
+		$cena = htmlspecialchars($cena);
 
 		if($this->Database->change("UPDATE epos.Artikli SET ime = ?, opis = ?,
 		 cena = ? WHERE idArtikel = ?", [$ime, $opis, $cena, $target_id])){
