@@ -52,7 +52,7 @@ $(document).ready(function(){
         success: function(res2){  //console.log(res2);
           if(res2 == null || res2[0]['vloga'] != 'stranka'){
             $('#articleMain').append(
-              '<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">'+
+              '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
               '<div class="card-body">'+
                 '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
                 '<h4>'+ res[0]['cena'] +' EUR</h4>'+
@@ -61,7 +61,7 @@ $(document).ready(function(){
             );
           }else{
             $('#articleMain').append(
-              '<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">'+
+              '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
               '<div class="card-body">'+
                 '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
                 '<h4>'+ res[0]['cena'] +' EUR</h4>'+
