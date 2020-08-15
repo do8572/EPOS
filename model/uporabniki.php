@@ -141,7 +141,7 @@ class Uporabnik{
 		return -4;
 	}
 
-	public function prijavi($email, $geslo){
+	public function prijavi($email, $geslo, $tip){
 		if(!isset($_SERVER['HTTPS'])){
 			return -1;
 		}
@@ -151,8 +151,13 @@ class Uporabnik{
 		}
 
 		session_regenerate_id();
+		$rowInUporabniki = null;
 
-		$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ? AND stanje = 'aktiviran'", [$email]);
+		if($tip == null){
+			$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ? AND stanje = 'aktiviran'", [$email]);
+		}else{
+			$rowInUporabniki = $this->Database->retrieve("SELECT * FROM Uporabniki WHERE `elektronski naslov` = ? AND vloga = ? AND stanje = 'aktiviran'", [$email, $tip]);
+		}
 
 		if($rowInUporabniki == null){
 			return -3;
@@ -181,7 +186,7 @@ class Uporabnik{
 		$cert_data = openssl_x509_parse($client_cert);
 		$email = $cert_data['subject']['emailAddress'];
 
-		return $this->prijavi($email, $geslo);
+		return $this->prijavi($email, $geslo, null);
 	}
 
 	public function odjavi(){

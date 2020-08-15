@@ -1,8 +1,8 @@
 <?php
-include_once(__DIR__ . '/../model/artikli.php');
-include_once(__DIR__ . '/../model/uporabniki.php');
-include_once(__DIR__ . '/../model/kosarica.php');
-include_once(__DIR__ . '/../model/narocila.php');
+include_once(__DIR__ . '/../../model/artikli.php');
+include_once(__DIR__ . '/../../model/uporabniki.php');
+include_once(__DIR__ . '/../../model/kosarica.php');
+include_once(__DIR__ . '/../../model/narocila.php');
 
 header('Content-Type: application/json');
 
@@ -18,6 +18,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}elseif(isset($_POST['prijava'])) {
 			$racun = new Uporabnik();
 			$res = $racun->prijavi($_POST['email'], $_POST['geslo'], "stranka");
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_POST['prijavaX509'])){
+			$racun = new Uporabnik();
+			$res = $racun->prijaviX509($_POST['geslo']);
 			echo json_encode($res);
 			exit;
 	}elseif(isset($_POST['ustvariAdministratorja'])){

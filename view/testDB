@@ -1,2 +1,0 @@
-INSERT INTO epos.Uporabniki ('vloga', 'ime', 'priimek',
-		 'elektronski naslov', 'geslo', 'naslov', 'telefonska stevilka', 'stanje') VALUES ('stranka', ?,?,?,?,?,?,'aktiviran')

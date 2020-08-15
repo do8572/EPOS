@@ -6,7 +6,7 @@ $(document).ready(function(){
     if($("#prijavaX509").is(":checked")){
       $.ajax({
         type: 'POST',
-        url: '/epos/controller/requestHandler.php',
+        url: '/epos/controller/X509/requestHandler.php',
         data: {
           'prijavaX509': true,
           'geslo': $("#inputPassword").val()

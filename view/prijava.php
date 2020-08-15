@@ -1,30 +1,3 @@
-<?php
-//data you want to sign
-$data = filter_input(INPUT_SERVER, "SSL_CLIENT_CERT");
-print_r($_SERVER);
-
-//create new private and public key
-$private_key_res = openssl_pkey_new(array(
-    "private_key_bits" => 2048,
-    "private_key_type" => OPENSSL_KEYTYPE_RSA,
-));
-$details = openssl_pkey_get_details($private_key_res);
-$public_key_res = openssl_pkey_get_public($details['key']);
-
-//create signature
-openssl_sign($data, $signature, $private_key_res, "sha256WithRSAEncryption");
-
-//verify signature
-$ok = openssl_verify($data, $signature, $public_key_res, OPENSSL_ALGO_SHA256);
-if ($ok == 1) {
-    echo "valid";
-} elseif ($ok == 0) {
-    echo "invalid";
-} else {
-    echo "error: ".openssl_error_string();
-}
-?>
-
 <html>
 <header>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

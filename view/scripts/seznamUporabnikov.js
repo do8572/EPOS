@@ -1,17 +1,3 @@
-var aktiviraj = function(id){
-  $.ajax({
-    type: 'POST',
-    url: '/epos/controller/requestHandler.php',
-    data: {
-      'aktiviraj': true,
-      'target_id': id
-    },
-    success: function(res){
-      location.reload();
-    }
-  });
-}
-
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -26,6 +12,20 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+var aktiviraj = function(id){
+  $.ajax({
+    type: 'POST',
+    url: '/epos/controller/requestHandler.php',
+    data: {
+      'aktiviraj': true,
+      'target_id': id
+    },
+    success: function(res){
+      location.reload();
+    }
+  });
+}
 
 var deaktiviraj = function(id){   //console.log(id);
   $.ajax({
