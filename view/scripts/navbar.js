@@ -1,8 +1,7 @@
 $(document).ready(function(){
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     url: '/epos/controller/requestHandler.php',
-    contentType: 'application/json',
     data: {
       'opisUporabnika': true,
       'target_id': null

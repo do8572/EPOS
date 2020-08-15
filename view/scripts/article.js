@@ -42,9 +42,8 @@ $(document).ready(function(){
     },
     success: function(res){   //console.log(res);
       $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '/epos/controller/requestHandler.php',
-        contentType: 'application/json',
         data: {
           'opisUporabnika': true,
           'target_id': null

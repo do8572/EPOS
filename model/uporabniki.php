@@ -44,6 +44,31 @@ class Uporabnik{
 		return TRUE;
 	}
 
+	public function vloga($target_id){
+		if(!$this->jePrijavljen()){
+			return -1;
+		}
+
+		if($target_id == null){
+			return $_SESSION['role'];
+		}
+
+		$data = $this->Database->retrieve("SELECT vloga FROM epos.Uporabniki WHERE idUporabnik = ?",
+		 [$target_id]);
+
+		if($target_id != $_SESSION['session_id']){
+ 			$tar_role = $data[0]['vloga'];
+
+ 			if(($tar_role == 'stranka' && $_SESSION['role'] != 'prodajalec') ||
+ 			 ($tar_role == 'prodajalec' && $_SESSION['role'] != 'administrator') ||
+ 			 $tar_role == 'administrator'){
+ 				 return -5;
+ 			 }
+ 		}
+
+		return $data;
+	}
+
 	public function opis($target_id){
 		if(!$this->jePrijavljen()){
 			return null;
@@ -166,7 +191,7 @@ class Uporabnik{
 		$hash = $rowInUporabniki[0]['geslo'];
 
 		if(!password_verify($geslo, $hash)) {
-			return $hash;
+			return -4;
 		}
 
 		$_SESSION['loggedin'] = TRUE;
@@ -186,7 +211,19 @@ class Uporabnik{
 		$cert_data = openssl_x509_parse($client_cert);
 		$email = $cert_data['subject']['emailAddress'];
 
-		return $this->prijavi($email, $geslo, null);
+		$res = $this->prijavi($email, $geslo, null);
+
+		if($res < 0){
+			openssl_x509_free();
+
+			$client_cert = filter_input(INPUT_SERVER, "SSL_CLIENT_CERT");
+			$cert_data = openssl_x509_parse($client_cert);
+			$email = $cert_data['subject']['emailAddress'];
+
+			$res = $this->prijavi($email, $geslo, null);
+		}
+
+		return $res;
 	}
 
 	public function odjavi(){

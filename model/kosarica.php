@@ -84,8 +84,8 @@ class Kosarica{
     foreach(array_keys($_SESSION['kosarica']) as $idArtikel){
       $artikel = $_SESSION['kosarica'][$idArtikel]['data'];
 
-      $this->Database->change("INSERT INTO epos.Narocila_has_Artikli (idNarocilo, idArtikel, cena, kolicina) VALUES (?,?,?,?)",
-      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idArtikel]['kolicina']]);
+      $this->Database->change("INSERT INTO epos.Narocila_has_Artikli (idNarocilo, idArtikel, cena, kolicina, originalnoIme) VALUES (?,?,?,?,?)",
+      [$idNarocila, $idArtikel, $artikel['cena'], $_SESSION['kosarica'][$idArtikel]['kolicina'], $artikel['ime']]);
 
         $this->odstrani($idArtikel, $_SESSION['kosarica'][$idArtikel]['kolicina']);
       }

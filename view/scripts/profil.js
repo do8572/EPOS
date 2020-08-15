@@ -17,9 +17,8 @@ $(document).ready(function(){
   var idProfil = getUrlParameter('idProfil');
 
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     url: '/epos/controller/requestHandler.php',
-    contentType: 'application/json',
     data: {
       'opisUporabnika': true,
       'target_id': idProfil

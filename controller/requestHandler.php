@@ -89,6 +89,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		#print_r($res);
 		echo json_encode($res);
 		exit;
+	}elseif(isset($_POST['seznamUporabnikov'])){
+			$racun = new Uporabnik();
+			$res = $racun->seznam();
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_POST['opisUporabnika'])){
+			$racun = new Uporabnik();
+			$res = $racun->opis($_POST['target_id']);
+			echo json_encode($res);
+			exit;
+	}elseif(isset($_POST['opisNarocila'])){
+		$narocila = new Narocila();
+		$res = $narocila->opis($_POST['target_id']);
+		echo json_encode($res);
+		exit;
 	}
 }elseif($_SERVER['REQUEST_METHOD'] == 'GET') {
 	#print_r($_GET);
@@ -125,29 +140,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		#print_r($_SESSION);
 		echo json_encode($res);
 		exit;
-	}elseif(isset($_GET['opisNarocila'])){
-		$narocila = new Narocila();
-		$res = $narocila->opis($_GET['target_id']);
-		echo json_encode($res);
-		exit;
 	}elseif(isset($_GET['seznamNarocil'])){
 		$narocila = new Narocila();
 		$res = $narocila->seznam($_GET['stanje']);
 		echo json_encode($res);
 		exit;
-	}elseif(isset($_GET['opisUporabnika'])){
+	}elseif(isset($_GET['vlogaUporabnika'])){
 			$racun = new Uporabnik();
-			$res = $racun->opis($_GET['target_id']);
+			$res = $racun->vloga($_GET['target_id']);
 			echo json_encode($res);
 			exit;
 	}elseif(isset($_GET['izpisKosarica'])){
 			$kosarica = new Kosarica();
 			$res = $kosarica->opis();
-			echo json_encode($res);
-			exit;
-	}elseif(isset($_GET['seznamUporabnikov'])){
-			$racun = new Uporabnik();
-			$res = $racun->seznam();
 			echo json_encode($res);
 			exit;
 	}
