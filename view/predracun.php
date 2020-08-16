@@ -21,37 +21,35 @@
 		    <div class="row">
 				<div class="col-sm-6 top-left">
 						<h3 class="marginright">Predracun</h3>
-						<span class="marginright">14 April 2014</span>
+						<span class="marginright mydate"></span>
 			    </div>
 			</div>
 			<hr>
 			<div class="row">
 
 				<div class="col-md-4 from">
-					<p class="lead marginbottom">From : Dynofy</p>
-					<p>350 Rhode Island Street</p>
-					<p>Suite 240, San Francisco</p>
-					<p>California, 94103</p>
+					<p class="lead marginbottom">From : EPOS</p>
+					<p>Vecna Pot 113</p>
+					<p>Ljubljana, Slovenia</p>
 					<p>Phone: 415-767-3600</p>
-					<p>Email: contact@dynofy.com</p>
+					<p>Email: epos@gmail.com</p>
 				</div>
 
 				<div class="col-md-4 to">
-					<p class="lead marginbottom">To : John Doe</p>
-					<p>425 Market Street</p>
-					<p>Suite 2200, San Francisco</p>
-					<p>California, 94105</p>
-					<p>Phone: 415-676-3600</p>
-					<p>Email: john@doe.com</p>
+					<p class="lead marginbottom" id="naslovnik">To : </p>
+					<p id="naslov"></p>
+					<p>Ljubljana, Slovenia</p>
+					<p id="telefon">Phone: </p>
+					<p id="mail">Email: </p>
 
 			    </div>
 
 			    <div class="col-md-4 text-right payment-details">
 					<p class="lead marginbottom payment-info">Payment details</p>
-					<p>Date: 14 April 2014</p>
-					<p>VAT: DK888-777 </p>
-					<p>Total Amount: $1019</p>
-					<p>Account Name: Flatter</p>
+					<p class="mydate"></p>
+					<p>DDV: 22% </p>
+					<p class="mytotal">Total Amount: </p>
+					<p>Stevilka racuna: N/A</p>
 			    </div>
 
 			</div>
@@ -67,36 +65,8 @@
 			          <th class="text-right" style="width:15%">Total Price</th>
 			        </tr>
 			      </thead>
-			      <tbody>
-			        <tr>
-			          <td class="text-center">1</td>
-			          <td>Flatter Theme</td>
-			          <td class="text-right">10</td>
-			          <td class="text-right">$18</td>
-			          <td class="text-right">$180</td>
-			        </tr>
-			        <tr>
-			          <td class="text-center">2</td>
-			          <td>Flat Icons</td>
-			          <td class="text-right">6</td>
-			          <td class="text-right">$59</td>
-			          <td class="text-right">$254</td>
-			        </tr>
-			        <tr>
-			          <td class="text-center">3</td>
-			          <td>Wordpress version</td>
-			          <td class="text-right">4</td>
-			          <td class="text-right">$95</td>
-			          <td class="text-right">$285</td>
-			        </tr>
-			         <tr class="last-row">
-			          <td class="text-center">4</td>
-			          <td>Server Deployment</td>
-			          <td class="text-right">1</td>
-			          <td class="text-right">$300</td>
-			          <td class="text-right">$300</td>
-			        </tr>
-			       </tbody>
+			      <tbody id="predracun">
+			      </tbody>
 			    </table>
 
 			</div>
@@ -104,10 +74,9 @@
       <hr>
 			<div class="row">
 			<div class="col-xs-6 text-right pull-left invoice-total w-100">
-					  <p>Subtotal : $1019</p>
-			          <p>Discount (10%) : $101 </p>
-			          <p>VAT (8%) : $73 </p>
-			          <p>Total : $991 </p>
+					  <p id="subtotal">Subtotal : </p>
+			      <p id="ddv">DDV (22%) : </p>
+			      <p id="total">Total : $991 </p>
 			</div>
 			</div>
 
@@ -124,7 +93,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="scripts/trgovina.js"></script>
+<script src="scripts/predracun.js"></script>
 <script src="scripts/navbar.js"></script>
 
 </body>

@@ -32,21 +32,7 @@ var dodajArtikel = function(idArtikel){
 }
 
 var zakljuciNakup = function(){
-  $.ajax({
-    type: 'POST',
-    url: '/epos/controller/requestHandler.php',
-    data: {
-      'zakljuciNakup': true
-    },
-    success: function(res){
-      console.log('zakljucen nakup');
-      window.location.replace("narocila.php");
-    },
-    error: function (xhr, ajaxOptions, thrownError) {
-        console.log(xhr.status);
-        console.log(thrownError);
-    }
-  });
+  window.location.replace('predracun.php');
 }
 
 $(document).ready(function(){
