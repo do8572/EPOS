@@ -27,7 +27,7 @@ $(document).ready(function(){
     success: function(res){   //console.log(res);
       if(res == null){
         window.location.replace("trgovina.php");
-      }else if(res.length == 0 || res == -5){
+      }else if(res.length == 0 || res < 0){
         $(".card").remove();
         $(".container").append(
           '<h5 style="margin-top: 1.5rem">Unable to retrieve profile.</h5>'

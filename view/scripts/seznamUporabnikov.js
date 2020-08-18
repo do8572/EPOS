@@ -73,7 +73,7 @@ $(document).ready(function(){
         $('#SeznamMain').append(
           '<div class="list-group-item list-group-item-action flex-column align-items-start">' +
             '<div class="d-flex w-100 justify-content-between">' +
-              '<a href="profil.php?idProfil='+ res[i]['idUporabnik'] +' class="text-dark"><h5 class="mb-1">' + res[i]['ime'] + ' ' + res[i]['priimek'] +'</h5></a>' +
+              '<a href="profil.php?idProfil='+ res[i]['idUporabnik'] +'" class="text-dark"><h5 class="mb-1">' + res[i]['ime'] + ' ' + res[i]['priimek'] +'</h5></a>' +
             '</div>' +
             '<p class="mb-1">' + res[i]['elektronski naslov'] + '</p>' +
             gumb +

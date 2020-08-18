@@ -84,7 +84,7 @@ $(document).ready(function(){
           $('#NarocilaMain').append(
             '<div class="list-group-item list-group-item-action flex-column align-items-start">' +
               '<div class="d-flex w-100 justify-content-between">' +
-                '<a href="narocilo.php?idNarocilo='+ res[i]['idNarocilo'] +' class="text-dark"><h5 class="mb-1">' + res[i]['idNarocilo'] +'</h5></a>' +
+                '<a href="narocilo.php?idNarocilo='+ res[i]['idNarocilo'] +'" class="text-dark"><h5 class="mb-1">' + res[i]['idNarocilo'] +'</h5></a>' +
                 '<small class="text-muted">' + res[i]['stanje'] + '</small>' +
               '</div>' +
               '<p class="mb-1">' + res[i]['datum_narocila'] + '</p>' +
@@ -105,7 +105,7 @@ $(document).ready(function(){
           $('#NarocilaMain').append(
             '<div class="list-group-item list-group-item-action flex-column align-items-start">' +
               '<div class="d-flex w-100 justify-content-between">' +
-                '<a href="narocilo.php?idNarocilo='+ res[i]['idNarocilo'] +' class="text-dark"><h5 class="mb-1">' + res[i]['idNarocilo'] +'</h5></a>' +
+                '<a href="narocilo.php?idNarocilo='+ res[i]['idNarocilo'] + '" class="text-dark"><h5 class="mb-1">' + res[i]['idNarocilo'] +'</h5></a>' +
                 '<small class="text-muted">' + res[i]['stanje'] + '</small>' +
               '</div>' +
               gumb +

@@ -23,26 +23,32 @@ $(document).ready(function(){
       'opisNarocila': true,
       'target_id': idNarocilo
     },
-    success: function(res){
+    success: function(res){console.log(res);
       var total = 0;
 
-      for(var i=0; i < res.length; i++){
-              $('#NarocilaMain').append(
-                '<a href="article.php?idArtikel='+ res[i]['idArtikel'] +'" class="list-group-item list-group-item-action flex-column align-items-start">' +
-                  '<div class="d-flex w-100 justify-content-between">' +
-                    '<h5 class="mb-1">'+ res[i]['originalnoIme'] +'</h5>' +
-                    '<small class="text-muted">' + res[i]['cena'] + 'EUR</small>' +
-                  '</div>' +
-                  '<p class="mb-1">x' + res[i]['kolicina'] +'</p>' +
-                '</a>'
-              );
+      if(res == -1){
+        $('#NarocilaMain').append(
+          '<h5 style="margin-top: 1.5rem">Unable to retrieve profile.</h5>'
+        );
+      }else{
+        for(var i=0; i < res.length; i++){
+                $('#NarocilaMain').append(
+                  '<a href="article.php?idArtikel='+ res[i]['idArtikel'] +'" class="list-group-item list-group-item-action flex-column align-items-start">' +
+                    '<div class="d-flex w-100 justify-content-between">' +
+                      '<h5 class="mb-1">'+ res[i]['originalnoIme'] +'</h5>' +
+                      '<small class="text-muted">' + res[i]['cena'] + 'EUR</small>' +
+                    '</div>' +
+                    '<p class="mb-1">x' + res[i]['kolicina'] +'</p>' +
+                  '</a>'
+                );
 
-              total += res[i]['kolicina'] * res[i]['cena'];
+                total += res[i]['kolicina'] * res[i]['cena'];
+        }
+        $('#NarocilaMain').append(
+          '<hr>' +
+          '<h5 class="mb-1 d-flex w-100 justify-content-end">Total: '+ total.toFixed(2) +'</h5>'
+        );
       }
-      $('#NarocilaMain').append(
-        '<hr>' +
-        '<h5 class="mb-1 d-flex w-100 justify-content-end">Total: '+ total.toFixed(2) +'</h5>'
-      );
     },
     error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.status);

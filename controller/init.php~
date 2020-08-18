@@ -27,7 +27,7 @@ $res = $racun->registrirajStranko(
 $res = $racun->registrirajStranko(
   'Diona', 'Ocepek', 'diona@gmail.com', 'sestra2', 'Vecna pot 11', '070856391');
 $res = $racun->registrirajStranko(
-  'Boris', 'Johnson', 'boris@gmail.com', 'bojo', '<script>alert()</script>', '070856391');
+  'Boris', 'Johnson', 'boris@gmail.com', 'bojo', '<script>alert("XSS")</script>', '070856391');
 
 //prijavi kot prodajalec
 $res = $racun->prijaviX509('prof');

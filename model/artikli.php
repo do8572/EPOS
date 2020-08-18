@@ -50,7 +50,7 @@ class Artikel{
 			return $rowInArtikli;
 		}
 
-		if($rowInArtikli[0]['idProdajalec'] != $_SESSION['session_id']){
+		if(!$this->uporabnik->jeProdajalec()){
 			return -3;
 		}
 

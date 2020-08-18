@@ -30,6 +30,15 @@ class Narocila{
   }
 
   public function opis($idNarocila){
+    if(!$this->uporabnik->jeProdajalec()){
+      $data = $this->Database->retrieve("SELECT idStranka FROM epos.Narocila WHERE idNarocilo = ?",
+      [$idNarocila]);
+
+      if($data[0]['idStranka'] != $_SESSION['session_id']){
+        return -1;
+      }
+    }
+
     return $this->Database->retrieve("SELECT * FROM epos.Narocila_has_Artikli WHERE idNarocilo = ?",
     [$idNarocila]);
   }

@@ -40,44 +40,50 @@ $(document).ready(function(){
       'opisArtikla': true,
       'target_id': idArtikel
     },
-    success: function(res){   //console.log(res);
-      $.ajax({
-        type: 'POST',
-        url: '/epos/controller/requestHandler.php',
-        data: {
-          'opisUporabnika': true,
-          'target_id': null
-        },
-        success: function(res2){  //console.log(res2);
-          if(res2 == null || res2[0]['vloga'] != 'stranka'){
-            $('#articleMain').append(
-              '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
-              '<div class="card-body">'+
-                '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
-                '<h4>'+ res[0]['cena'] +' EUR</h4>'+
-                '<p class="card-text">'+ res[0]['opis'] +'</p>'+
-              '</div>'
-            );
-          }else{
-            $('#articleMain').append(
-              '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
-              '<div class="card-body">'+
-                '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
-                '<h4>'+ res[0]['cena'] +' EUR</h4>'+
-                '<p class="card-text">'+ res[0]['opis'] +'</p>'+
-                '<div class="row justify-content-end">' +
-                  '<div class="col-md-3">' +
-                '<button type="button" class="btn btn-primary" onclick="dodajArtikel(' + idArtikel + ')">DodajArtikel</button>' +
-                '</div></div>' +
-              '</div>'
-            );
+    success: function(res){   console.log(res);
+      if(res < 0){
+        $('#articleMain').append(
+          '<h5 style="margin-top: 1.5rem">Unable to retrieve profile.</h5>'
+        );
+      }else{
+        $.ajax({
+          type: 'POST',
+          url: '/epos/controller/requestHandler.php',
+          data: {
+            'opisUporabnika': true,
+            'target_id': null
+          },
+          success: function(res2){  //console.log(res2);
+            if(res2 == null || res2[0]['vloga'] != 'stranka'){
+              $('#articleMain').append(
+                '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
+                '<div class="card-body">'+
+                  '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
+                  '<h4>'+ res[0]['cena'] +' EUR</h4>'+
+                  '<p class="card-text">'+ res[0]['opis'] +'</p>'+
+                '</div>'
+              );
+            }else{
+              $('#articleMain').append(
+                '<img class="card-img-top img-fluid" src="../images/900x400.jpg" alt="broken link">'+
+                '<div class="card-body">'+
+                  '<h3 class="card-title">'+ res[0]['ime'] +'</h3>'+
+                  '<h4>'+ res[0]['cena'] +' EUR</h4>'+
+                  '<p class="card-text">'+ res[0]['opis'] +'</p>'+
+                  '<div class="row justify-content-end">' +
+                    '<div class="col-md-3">' +
+                  '<button type="button" class="btn btn-primary" onclick="dodajArtikel(' + idArtikel + ')">DodajArtikel</button>' +
+                  '</div></div>' +
+                '</div>'
+              );
+            }
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            console.log(xhr.responseText);
+            console.log(thrownError);
           }
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-          console.log(xhr.responseText);
-          console.log(thrownError);
-        }
-      });
+        });
+      }
     }
   });
 });

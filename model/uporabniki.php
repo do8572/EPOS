@@ -39,6 +39,12 @@ class Uporabnik{
 	public function preveriPodatke($ime, $priimek, $email, $geslo, $naslov, $telefon){
 		if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i",$email)){
 			return FALSE;
+		}elseif(!preg_match("/^[A-Za-z]+$/",$ime)){
+			return FALSE;
+		}elseif(!preg_match("/^[A-Za-z]+$/",$priimek)){
+			return FALSE;
+		}elseif($telefon != null && !preg_match("/^[0-9]+$/",$telefon)){
+			return FALSE;
 		}
 
 		return TRUE;
@@ -194,7 +200,7 @@ class Uporabnik{
 			return -4;
 		}
 
-		$_SESSION['loggedin'] = TRUE;
+			$_SESSION['loggedin'] = TRUE;
       $_SESSION["session_id"] = $rowInUporabniki[0]['idUporabnik'];
       $_SESSION["username"] = $rowInUporabniki[0]['ime'];
       $_SESSION["role"] = $rowInUporabniki[0]['vloga'];
@@ -212,16 +218,6 @@ class Uporabnik{
 		$email = $cert_data['subject']['emailAddress'];
 
 		$res = $this->prijavi($email, $geslo, null);
-
-		if($res < 0){
-			openssl_x509_free();
-
-			$client_cert = filter_input(INPUT_SERVER, "SSL_CLIENT_CERT");
-			$cert_data = openssl_x509_parse($client_cert);
-			$email = $cert_data['subject']['emailAddress'];
-
-			$res = $this->prijavi($email, $geslo, null);
-		}
 
 		return $res;
 	}
@@ -252,7 +248,7 @@ class Uporabnik{
 			return -2;
 		}
 
-		if(!$this->preveriPodatke($ime, $priimek, $email, $geslo, $telefon, $naslov)){
+		if(!$this->preveriPodatke($ime, $priimek, $email, $geslo, $naslov, $telefon)){
 			return $email;
 		}
 
